@@ -45,30 +45,31 @@ function renderDiscountedPrice(items: Item[]): string {
 }
 
 function renderItems(items: Item[]): string {
-  return 'Name：Sprite，Quantity：5 bottles，Unit：3.00(yuan)，Subtotal：12.00(yuan)\n' +
-    'Name：Litchi，Quantity：2.5 pounds，Unit：15.00(yuan)，Subtotal：37.50(yuan)\n' +
-    'Name：Instant Noodles，Quantity：3 bags，Unit：4.50(yuan)，Subtotal：9.00(yuan)'
+  return items.map(item=>`Name：${item.name}，Quantity：${item.quantity} ${item.unit}s，Unit：${item.unitPrice.toFixed(2)}(yuan)，Subtotal：${item.subTotal.toFixed(2)}(yuan)`).join('\n')
+  // return 'Name：Sprite，Quantity：5 bottles，Unit：3.00(yuan)，Subtotal：12.00(yuan)\n' +
+  //   'Name：Litchi，Quantity：2.5 pounds，Unit：15.00(yuan)，Subtotal：37.50(yuan)\n' +
+  //   'Name：Instant Noodles，Quantity：3 bags，Unit：4.50(yuan)，Subtotal：9.00(yuan)'
 }
 
 function buildItems(tags: Tag[], promoterule: Promotion[]): Item[] {
   return [{
     name: 'Sprite',
     quantity: 5,
-    unitPrice: 3,
-    unit: 'bottles',
-    subTotal: 12
+    unitPrice: 3.00,
+    unit: 'bottle',
+    subTotal: 12.00
   }, {
     name: 'Litchi',
     quantity: 2.5,
-    unitPrice: 15,
-    unit: 'pounds',
-    subTotal: 37.5
+    unitPrice: 15.00,
+    unit: 'pound',
+    subTotal: 37.50
   }, {
-    name: 'Instant',
+    name: 'Instant Noodles',
     quantity: 3,
-    unitPrice: 3,
-    unit: 'bags',
-    subTotal: 9
+    unitPrice: 4.50,
+    unit: 'bag',
+    subTotal: 9.00
   }]
 
 }
