@@ -15,7 +15,7 @@ export function printReceipt(tags: string[]): string {
   return `***<store earning no money>Receipt ***
 ${renderItems(items)}
 ----------------------
-Total：${renderTotalPrice(items)}(yuan)
+Total：${renderTotalPrice(items).toFixed(2)}(yuan)
 Discounted prices：${renderDiscountedPrice(items)}(yuan)
 **********************`
 }
@@ -37,8 +37,9 @@ function decode(tags: string[]): Tag[] {
   }]
 }
 
-function renderTotalPrice(items: Item[]): string {
-  return '58.50'
+function renderTotalPrice(items: Item[]): number {
+  return items.map(item => item.subTotal).reduce((a,b)=> a+b)
+  //'58.50'
 }
 function renderDiscountedPrice(items: Item[]): string {
   return '7.50'
