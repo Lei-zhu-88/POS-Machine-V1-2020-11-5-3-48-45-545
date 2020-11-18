@@ -16,7 +16,7 @@ export function printReceipt(tags: string[]): string {
 ${renderItems(items)}
 ----------------------
 Total：${renderTotalPrice(items).toFixed(2)}(yuan)
-Discounted prices：${renderDiscountedPrice(items)}(yuan)
+Discounted prices：${renderDiscountedPrice(items).toFixed(2)}(yuan)
 **********************`
 }
 
@@ -41,8 +41,9 @@ function renderTotalPrice(items: Item[]): number {
   return items.map(item => item.subTotal).reduce((a,b)=> a+b)
   //'58.50'
 }
-function renderDiscountedPrice(items: Item[]): string {
-  return '7.50'
+function renderDiscountedPrice(items: Item[]): number {
+  return items.map(item => item.quantity * item.unitPrice - item.subTotal).reduce((a,b)=> a+b)
+  //'7.50'
 }
 
 function renderItems(items: Item[]): string {
